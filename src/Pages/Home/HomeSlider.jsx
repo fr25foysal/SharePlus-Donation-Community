@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import homebanner from '../../assets/images/homebanner.jpg'
+
 const HomeSlider = () => {
     return (
       <div
               className="hero rounded-sm"
               style={{
                 backgroundImage: `url(${homebanner})`,
-                height:'600px'
+                height:'600px',
+                backgroundSize: 'cover'
               }}
             >
               <div className="hero-overlay bg-black bg-opacity-40 rounded-sm"></div>
