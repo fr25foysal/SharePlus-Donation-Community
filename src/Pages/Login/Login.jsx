@@ -7,10 +7,21 @@ import useProvider from "../../Hooks/useProvider";
 const Login = () => {
   const [errMsg, setErrMsg] = useState('')
   const navigate = useNavigate()
-    const {userLogin,successNotify} = useProvider()
+    const {userLogin,successNotify,googleLogin} = useProvider()
     const [show, setShow] = useState(true)
     const handlePassShow=()=>{
         setShow(!show)
+    }
+
+    const handleGoogleLogin=()=>{
+      googleLogin()
+      .then(()=>{
+        successNotify("Sign Up Succesful")
+          navigate('/')
+      })
+      .catch(e=>{
+        setErrMsg(e.message)
+      })
     }
 
     const handleSubmit=(e)=>{
@@ -133,13 +144,13 @@ const Login = () => {
                 </div>
                 <div className="divider">OR</div>
                 <div className="flex">
-                  <button
-                    // onClick={handleGoogleLogin}
-                    className="flex justify-center bg-accent px-5 border-[3px] transition-all border-accent hover:bg-transparent hover:text-accent py-2 text-white w-full text-center align-middle font-bold uppercase"
+                  <div
+                    onClick={handleGoogleLogin}
+                    className="flex cursor-pointer justify-center bg-accent px-5 border-[3px] transition-all border-accent hover:bg-transparent hover:text-accent py-2 text-white w-full text-center align-middle font-bold uppercase"
                   >
                     <FaGoogle className="text-xl mr-3 "></FaGoogle> Continue
                     with google
-                  </button>
+                  </div>
                 </div>
                 <p className="text-red-600 mt-3 text-center"></p>
 

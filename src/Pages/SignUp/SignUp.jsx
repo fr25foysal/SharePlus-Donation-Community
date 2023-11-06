@@ -7,12 +7,22 @@ import useProvider from "../../Hooks/useProvider";
 const SignUp = () => {
   const [errMsg, setErrMsg] = useState('')
   const navigate = useNavigate()
-  const {createUser,updateUser,successNotify} = useProvider()
+  const {createUser,updateUser,successNotify,googleLogin} = useProvider()
     const [show, setShow] = useState(true)
     const handlePassShow=()=>{
         setShow(!show)
     }
 
+    const handleGoogleLogin=()=>{
+      googleLogin()
+      .then(()=>{
+        successNotify("Sign Up Succesful")
+          navigate('/')
+      })
+      .catch(e=>{
+        setErrMsg(e.message)
+      })
+    }
     
     const handleSubmit=(e)=>{
       e.preventDefault()
@@ -47,7 +57,7 @@ const SignUp = () => {
           <div className="relative flex flex-col dark:bg-dark-bg bg-white shadow-md px-6 py-10">
             <div className="flex">
               <button
-                // onClick={handleGoogleLogin}
+                onClick={handleGoogleLogin}
                 className="flex justify-center bg-accent px-5 border-[3px] transition-all border-accent hover:bg-transparent hover:text-accent py-2 text-white w-full text-center align-middle font-bold uppercase"
               >
                 <FaGoogle className="text-xl mr-3 "></FaGoogle> Continue with
