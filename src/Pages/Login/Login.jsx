@@ -1,13 +1,34 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash,FaGoogle } from 'react-icons/fa';
 import { useState } from "react";
 import LoginLottie from "../../Components/LoginLottie/LoginLottie";
+import useProvider from "../../Hooks/useProvider";
 
 const Login = () => {
+  const [errMsg, setErrMsg] = useState('')
+  const navigate = useNavigate()
+    const {userLogin,successNotify} = useProvider()
     const [show, setShow] = useState(true)
     const handlePassShow=()=>{
         setShow(!show)
     }
+
+    const handleSubmit=(e)=>{
+      e.preventDefault()
+      const form = e.target 
+      const email = form.email.value
+      const password = form.password.value
+
+      userLogin(email,password)
+      .then(()=>{
+        successNotify('User Logged In')
+        navigate('/')
+      })
+      .catch(e=>{
+        setErrMsg(e.message);
+      })
+    }
+
     return (
       <div className="bg-secondary rounded-sm bg-center flex">
         <div className="flex-1 pb-5 lg:px-20">
@@ -23,7 +44,7 @@ const Login = () => {
             </div>
 
             <form
-            // onSubmit={handleSubmit}
+            onSubmit={handleSubmit}
             >
               <div className="flex flex-col gap-4 p-6">
                 <div className="relative h-11 w-full min-w-[200px]">
@@ -107,7 +128,7 @@ const Login = () => {
                   >
                     Sign In
                   </button>
-                  <p className="text-[#ff5858] mt-3 text-center"></p>{" "}
+                  <p className="text-[#ff5858] mt-3 text-center">{errMsg}</p>
                   {/*errMsg*/}
                 </div>
                 <div className="divider">OR</div>

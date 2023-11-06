@@ -1,13 +1,43 @@
 import { useState } from "react";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoginLottie from "../../Components/LoginLottie/LoginLottie";
+import useProvider from "../../Hooks/useProvider";
 
 const SignUp = () => {
+  const [errMsg, setErrMsg] = useState('')
+  const navigate = useNavigate()
+  const {createUser,updateUser,successNotify} = useProvider()
     const [show, setShow] = useState(true)
     const handlePassShow=()=>{
         setShow(!show)
     }
+
+    
+    const handleSubmit=(e)=>{
+      e.preventDefault()
+      setErrMsg('')
+      const form = e.target
+      const name = form.name.value
+      const photo = form.photo.value
+      const email = form.email.value
+      const password = form.password.value
+
+      createUser(email,password)
+      .then(()=>{
+        updateUser(name,photo)
+        .then(()=>{
+          successNotify("Sign Up Succesful")
+          form.reset()
+          navigate('/')
+        })
+        .catch(e=>{
+          setErrMsg(e.message);
+        })
+      })
+      .catch(e=>setErrMsg(e.message))
+    }
+
     return (
       <div className="bg-secondary rounded-sm bg-center flex py-10">
         <div className="flex-1 py-5 lg:px-20 ">
@@ -32,7 +62,7 @@ const SignUp = () => {
             <p className="mt-1 text-center block  text-base font-normal leading-relaxed text-gray-700 antialiased"></p>
 
             <form
-              //   onSubmit={handleSubmit}
+                onSubmit={handleSubmit}
               className="mt-4 mb-2 w-80 max-w-screen-lg sm:w-96"
             >
               <div className="mb-4 flex flex-col gap-6 text-black">
@@ -146,7 +176,7 @@ const SignUp = () => {
                 </button>
               </div>
               {/* errr message will be here {errmsg} */}
-              <p className="text-[#ff5858] mt-3 text-center"></p> {/*errMsg*/}
+              <p className="text-[#ff5858] mt-3 text-center">{errMsg}</p> 
               <p className="mt-4 block text-center  text-base font-normal leading-relaxed text-gray-700 antialiased">
                 Already have an account?
                 <Link

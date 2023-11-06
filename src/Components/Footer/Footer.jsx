@@ -2,10 +2,13 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
+      <div className="bg-secondary">
+
+      
       <footer className="px-4 divide-y font-medium max-w-7xl mx-auto dark:bg-gray-800 dark:text-gray-100">
         <div className="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
           <div className="lg:w-1/4">
-            <a
+            <div
               rel="noopener noreferrer"
               href="#"
               className="flex justify-center space-x-3 lg:justify-start"
@@ -15,7 +18,7 @@ const Footer = () => {
                   <img src="/logo.png" alt="Website Logo" />
                 </Link>
               </div>
-            </a>
+            </div>
           </div>
           <div className="grid grid-cols-2 gap-x-3 gap-y-8 lg:w-3/4 sm:grid-cols-4">
             <div className="space-y-3">
@@ -114,7 +117,7 @@ const Footer = () => {
         <div className="py-6 text-sm text-center dark:text-gray-400">
           © 2023 Share Surplus. All rights reserved.
         </div>
-      </footer>
+      </footer></div>
     );
 };
 

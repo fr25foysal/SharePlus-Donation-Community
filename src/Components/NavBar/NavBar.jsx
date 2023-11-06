@@ -1,14 +1,92 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
+import useProvider from "../../Hooks/useProvider";
 
 const NavBar = () => {
-    const menus = <>
-    <NavLink className={({isActive})=> isActive ? 'px-5 border-[3px] transition-all border-accent py-2' : ''} to={'/'}>Home</NavLink>
-    <NavLink className={({isActive})=> isActive ? 'px-5 border-[3px] transition-all border-accent py-2' : ''} to={'/available-food'}>Available Foods</NavLink>
-    <NavLink className={({isActive})=> isActive ? 'px-5 border-[3px] transition-all border-accent py-2' : ''} to={'/add-food'}>Add Food</NavLink>
-    <NavLink className={({isActive})=> isActive ? 'px-5 border-[3px] transition-all border-accent py-2' : ''} to={'/manage-food'}>Manage Food</NavLink>
-    <NavLink className={({isActive})=> isActive ? 'px-5 border-[3px] transition-all border-accent py-2' : ''} to={'/food-reqs'}>Food Requests</NavLink>
-    <NavLink className="bg-accent px-5 border-[3px] transition-all border-accent hover:bg-transparent hover:text-accent py-2 text-white" to={'/login'}>Login</NavLink>
-    </>
+  
+    const {user,logOut,successNotify} = useProvider()
+    const handleLogout=()=>{
+      logOut()
+      .then(d=>{
+        console.log(d);
+        successNotify('User Logged Out')
+        
+      })
+      .catch(e=>console.error(e.message))
+    }
+    const menus = (
+      <>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "px-5 border-[3px] transition-all border-accent py-2"
+              : ""
+          }
+          to={"/"}
+        >
+          Home
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "px-5 border-[3px] transition-all border-accent py-2"
+              : ""
+          }
+          to={"/available-food"}
+        >
+          Available Foods
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "px-5 border-[3px] transition-all border-accent py-2"
+              : ""
+          }
+          to={"/add-food"}
+        >
+          Add Food
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "px-5 border-[3px] transition-all border-accent py-2"
+              : ""
+          }
+          to={"/manage-food"}
+        >
+          Manage Food
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "px-5 border-[3px] transition-all border-accent py-2"
+              : ""
+          }
+          to={"/food-reqs"}
+        >
+          Food Requests
+        </NavLink>
+        {user?.email ? (
+          <>
+            <div className="join">
+              <button className="px- border-[3px] border-accent rounded-sm join-item">
+                <div className="avatar flex ">
+                  <div className="w-10 h-10 rounded-none">
+                    <img src={user?.photoURL} />
+                  </div>
+                </div>
+              </button>
+              <button onClick={handleLogout} className="bg-accent px-5 border-[3px] transition-all border-accent hover:bg-transparent hover:text-accent py-2 rounded-sm text-white">
+                Logout
+              </button>
+            </div>
+          </>
+        ) : (
+          <Link to={'/login'} className="bg-accent px-5 border-[3px] transition-all border-accent hover:bg-transparent hover:text-accent py-2 rounded-sm text-white">
+                Login
+              </Link>
+        )}
+      </>
+    );
     return (
       <div className="drawer max-w-7xl mx-auto px-0">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
