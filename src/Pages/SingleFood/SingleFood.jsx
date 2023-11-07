@@ -1,6 +1,8 @@
+import { useLoaderData } from "react-router-dom";
 
 const SingleFood = () => {
-    // const id = useParams()
+    const food = useLoaderData()
+    console.log(food);
     return (
         <div>
            <h2>Hello</h2>
