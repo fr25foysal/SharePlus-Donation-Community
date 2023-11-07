@@ -4,6 +4,9 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FcExpired } from "react-icons/fc";
 import { MdProductionQuantityLimits } from "react-icons/md";
 import { BiSolidDonateHeart } from "react-icons/bi";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import HomefeaturedFood from "../Home/HomefeaturedFood";
 
 const SingleFood = () => {
   const food = useLoaderData();
@@ -21,6 +24,12 @@ const SingleFood = () => {
     FoodStatus,
   } = food;
 
+  const [foods,setFoods] = useState([])
+  useEffect(()=>{
+    axios.get(`http://localhost:5000/featured-foods-sidebar`)
+    .then(d=>{
+        setFoods(d.data)
+    })},[])
   return (
     <div className="bg-secondary py-10">
       <WithContainer>
@@ -34,14 +43,14 @@ const SingleFood = () => {
                   alt=""
                 />
                 <div className="items-center flex">
-                    <div>
-                       <h2 className="text-[20px] font-semibold flex items-center gap-2">
-                    <BiSolidDonateHeart></BiSolidDonateHeart> Donor:
-                  </h2>
-                  <h2 className="text-[20px] font-semibold text-neutral">
-                    {DonatorName}
-                  </h2> 
-                    </div>
+                  <div>
+                    <h2 className="text-[20px] font-semibold flex items-center gap-2">
+                      <BiSolidDonateHeart></BiSolidDonateHeart> Donor:
+                    </h2>
+                    <h2 className="text-[20px] font-semibold text-neutral">
+                      {DonatorName}
+                    </h2>
+                  </div>
                 </div>
               </div>
             </div>
@@ -95,7 +104,18 @@ const SingleFood = () => {
             </div>
           </div>
 
-          <div className="flex-1 hidden lg:block rounded-sm p-5 bg-white"></div>
+          <div className="flex-1 hidden lg:block rounded-sm p-5 bg-white">
+            <div className="bg-secondary p-5">
+              <h2 className="text-2xl mb-5 font-semibold text-center">
+                Featured Foods
+              </h2>
+              <div className="grid gap-4">
+            {
+                foods.map(food=><HomefeaturedFood key={food._id} food={food}></HomefeaturedFood>)
+            }
+          </div>
+            </div>
+          </div>
         </div>
       </WithContainer>
     </div>
