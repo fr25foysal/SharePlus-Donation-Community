@@ -19,7 +19,7 @@ const AddFood = () => {
 
         const foodData = {FoodName,FoodImage,AdditionalNotes,PickupLocation ,ExpiredDate, FoodQuantity,FoodStatus,DonatorName,DonatorEmail}
 
-        axios.post('http://localhost:5000/add-food',foodData)
+        axios.post('/add-food',foodData)
         .then(()=>{successNotify('Donation Added')})
         .catch(e=>{
             console.error(e.message);

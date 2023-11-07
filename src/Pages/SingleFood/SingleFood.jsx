@@ -1,4 +1,4 @@
-import { Link, useLoaderData } from "react-router-dom";
+import {useLoaderData } from "react-router-dom";
 import WithContainer from "../../Components/WidthContainer/WithContainer";
 import { FaLocationDot } from "react-icons/fa6";
 import { FcExpired } from "react-icons/fc";
@@ -10,7 +10,7 @@ import HomefeaturedFood from "../Home/HomefeaturedFood";
 import useProvider from "../../Hooks/useProvider";
 
 const SingleFood = () => {
-  const {user} = useProvider()
+  const {user,successNotify,errorNotify} = useProvider()
   const food = useLoaderData();
   const currentDate = new Date()
   const date = String(currentDate.getDate()).padStart(2,"0")
@@ -35,18 +35,29 @@ const SingleFood = () => {
 
   const [foods,setFoods] = useState([])
   useEffect(()=>{
-    axios.get(`http://localhost:5000/featured-foods-sidebar`)
+    axios.get(`/featured-foods-sidebar`)
     .then(d=>{
         setFoods(d.data)
     })},[])
 
     const handleRequest=(e)=>{
       e.preventDefault()
+      
       const AditionalNote = e.target.description.value
       const DonationMoney = e.target.money.value
 
-      const requestData = {FoodName,FoodImage,_id,DonatorEmail,DonatorName,DonatorImage,FoodStatus,UserEmail,ExpiredDate,PickupLocation,RequestDate,AditionalNote,DonationMoney}
-      console.log(requestData)
+      const requestData = {FoodName,FoodImage,DonatorEmail,DonatorName,DonatorImage,FoodStatus,UserEmail,ExpiredDate,PickupLocation,RequestDate,AditionalNote,DonationMoney}
+      
+      axios.post('/req-food',requestData)
+      .then(d=>{
+        console.log(d);
+        successNotify('Request Successful')
+        e.target.reset()
+      })
+      .catch(e=>{
+        console.error(e.message);
+        errorNotify("Something went wrong!")
+      })
     }
   return (
     <div className="bg-secondary py-10">

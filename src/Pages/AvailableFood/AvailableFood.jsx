@@ -12,12 +12,12 @@ const AvailableFood = () => {
     // const {data,isPending} = useQuery({
     //     queryKey: ['fooods'],
     //     queryFn: async()=>{
-    //       return await axios.get('http://localhost:5000/foods')
+    //       return await axios.get('/foods')
     //     }
     // })
 
     useEffect(()=>{
-    axios.get(`http://localhost:5000/foods?search=${search}&sort=${sort}`)
+    axios.get(`/foods?search=${search}&sort=${sort}`)
     .then(d=>{
         setFoods(d.data)
     })
