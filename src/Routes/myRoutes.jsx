@@ -8,6 +8,7 @@ import FoodRequest from "../Pages/FoodRequest/FoodRequest";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
+import SingleFood from "../Pages/SingleFood/SingleFood";
 
 const myRoutes = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ const myRoutes = createBrowserRouter([
             {
                 path : 'food-reqs',
                 element: <FoodRequest></FoodRequest>
+            },
+            {
+                path: 'food/:id',
+                element: <SingleFood></SingleFood>
             },
             {
                 path: 'login',
