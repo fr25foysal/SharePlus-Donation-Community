@@ -49,7 +49,6 @@ const AuthContex = ({children}) => {
         const keepAlive = onAuthStateChanged(auth,(currentUser)=>{
             setUser(currentUser)
         })
-
         return ()=> keepAlive
     },[])
 

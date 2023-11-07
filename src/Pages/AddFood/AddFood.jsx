@@ -3,7 +3,7 @@ import WithContainer from "../../Components/WidthContainer/WithContainer"
 import useProvider from "../../Hooks/useProvider";
 
 const AddFood = () => {
-    const {user} = useProvider()
+    const {user,successNotify} = useProvider()
     const handleSubmit = e =>{
         e.preventDefault()
         // const form = e.target.value
@@ -19,7 +19,11 @@ const AddFood = () => {
 
         const foodData = {FoodName,FoodImage,AdditionalNotes,PickupLocation ,ExpiredDate, FoodQuantity,FoodStatus,DonatorName,DonatorEmail}
 
-        axios.post()
+        axios.post('http://localhost:5000/add-food',foodData)
+        .then(()=>{successNotify('Donation Added')})
+        .catch(e=>{
+            console.error(e.message);
+        })
     }
     return (
       <div className="">
