@@ -2,7 +2,6 @@ import axios from "axios";
 import WithContainer from "../../Components/WidthContainer/WithContainer";
 import { useEffect, useState } from "react";
 import HomefeaturedFood from "../Home/HomefeaturedFood";
-import { useQuery } from "@tanstack/react-query";
 
 const AvailableFood = () => {
     const [foods,setFoods] = useState([])
@@ -45,9 +44,9 @@ const AvailableFood = () => {
           <h2>Available Foods</h2>
           <div className="divider w-[130px] m-2 bg-white h-1 rounded-sm mx-auto"></div>
         </div>
-        <div className="bg-secondary">
+        <div className="bg-secondary pt-5">
           <WithContainer>
-            <div className="py-10 flex px-5 ">
+            <div className="py-7 rounded-sm flex px-5 bg-white mx-5 mb-5">
               <form onSubmit={handleSearch} className="flex-1">
                 <label
                   htmlFor="default-search"

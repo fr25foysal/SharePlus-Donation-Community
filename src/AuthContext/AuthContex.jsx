@@ -48,6 +48,7 @@ const AuthContex = ({children}) => {
     useEffect(()=>{
         const keepAlive = onAuthStateChanged(auth,(currentUser)=>{
             setUser(currentUser)
+            setLoading(false)
         })
         return ()=> keepAlive
     },[])
