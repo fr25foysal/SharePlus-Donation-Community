@@ -92,7 +92,8 @@ const NavBar = () => {
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
           {/* Navbar */}
-          <div className="navbar mx-auto max-w-7xl text-[#000]">
+          <div className="border-b-[1px] shadow-md border-accent">
+          <div className="navbar mx-auto max-w-7xl -b-2 border-accent text-[#000]">
             <div className="flex-none lg:hidden">
               <label
                 htmlFor="my-drawer-3"
@@ -123,6 +124,7 @@ const NavBar = () => {
                {menus}
               </ul>
             </div>
+          </div>
           </div>
           {/* Page content here */}
           <Outlet></Outlet>

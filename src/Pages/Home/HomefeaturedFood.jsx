@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FaLocationDot } from 'react-icons/fa6';
 
 const HomefeaturedFood = ({food}) => {
   const {_id, FoodName, FoodImage, FoodQuantity, PickupLocation, ExpiredDate, AdditionalNotes, DonatorImage, DonatorName, DonatorEmail, FoodStatus} = food
@@ -46,7 +47,7 @@ const HomefeaturedFood = ({food}) => {
 
           <div className=" items-stretch">
             <p>
-              <span className="font-semibold text-sm">Location: </span>
+              <span className="font-semibold text-sm"><FaLocationDot className="text-accent inline mr-1 text-base"></FaLocationDot> </span>
               {PickupLocation}
             </p>
           </div>

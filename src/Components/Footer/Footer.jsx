@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
-      <div className="bg-secondary">
+      <div className="bg-neutral">
 
       
       <footer className="px-4 divide-y font-medium max-w-7xl mx-auto dark:bg-gray-800 dark:text-gray-100">
