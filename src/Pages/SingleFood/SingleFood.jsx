@@ -107,7 +107,7 @@ const SingleFood = () => {
           <div className="flex-1 hidden lg:block rounded-sm p-5 bg-white">
             <div className="bg-secondary p-5">
               <h2 className="text-2xl mb-5 font-semibold text-center">
-                Featured Foods
+                More Foods
               </h2>
               <div className="grid gap-4">
             {

@@ -42,8 +42,8 @@ const AvailableFood = () => {
     return (
       <div className="">
         <div className="text-4xl bg-accent text-center p-10 font-semibold uppercase text-white">
-          <h2>Featured Foods</h2>
-          <div className="divider w-[130px] m-0 bg-white h-1 rounded-sm mx-auto"></div>
+          <h2>Available Foods</h2>
+          <div className="divider w-[130px] m-2 bg-white h-1 rounded-sm mx-auto"></div>
         </div>
         <div className="bg-secondary">
           <WithContainer>

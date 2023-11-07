@@ -25,7 +25,7 @@ const Home = () => {
            
           </div>
           <div className="w-32 mx-auto">
-            <Link to={'/available-food'} className="bg-transparent text-center px-4 border-[3px] transition-all border-accent hover:bg-accent hover:text-white py-2 rounded-sm text-accent">Show All</Link>
+            <Link to={'/available-food'} className="bg-transparent text-center px-4 border-[3px] transition-all border-accent hover:bg-accent hover:text-white py-2 rounded-sm text-neutral">Show All</Link>
           </div>
            </WithContainer>
         </div>

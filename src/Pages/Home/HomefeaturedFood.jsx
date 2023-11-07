@@ -28,7 +28,7 @@ const HomefeaturedFood = ({food}) => {
         <img
           src={FoodImage}
           alt={FoodName}
-          className="object-cover object-center w-full h-72 dark:bg-gray-500"
+          className="object-cover object-center w-full h-64  dark:bg-gray-500"
         />
         <div className="p-3 flex flex-col">
           <div className="pt-2 pb-2 grow-0">
