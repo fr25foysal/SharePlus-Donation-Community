@@ -4,6 +4,7 @@ import { useState } from "react";
 import LoginLottie from "../../Components/LoginLottie/LoginLottie";
 import useProvider from "../../Hooks/useProvider";
 import WithContainer from "../../Components/WidthContainer/WithContainer";
+import PageTitle from "../../Components/PageTitle";
 
 const Login = () => {
   const [errMsg, setErrMsg] = useState('')
@@ -43,6 +44,7 @@ const Login = () => {
 
     return (
       <div className="bg-secondary ">
+        <PageTitle>SharePlus | Login</PageTitle>
         <WithContainer>
           <div className="rounded-sm bg-center flex">
             <div className="flex-1 pb-5 lg:px-20">

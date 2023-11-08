@@ -1,6 +1,8 @@
 import axios from "axios";
 import WithContainer from "../../Components/WidthContainer/WithContainer"
 import useProvider from "../../Hooks/useProvider";
+import { Helmet } from "react-helmet";
+import PageTitle from "../../Components/PageTitle";
 
 const AddFood = () => {
     const {user,successNotify} = useProvider()
@@ -27,6 +29,7 @@ const AddFood = () => {
     }
     return (
       <div className="">
+        <PageTitle>SharePlus | Add Food</PageTitle>
         <div className="text-4xl bg-accent text-center p-10 font-semibold uppercase text-white">
           <h2>Donate Food</h2>
           <div className="divider w-[130px] m-2 bg-white h-1 rounded-sm mx-auto"></div>

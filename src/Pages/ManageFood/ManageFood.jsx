@@ -1,8 +1,9 @@
+import PageTitle from "../../Components/PageTitle";
 
 const ManageFood = () => {
     return (
         <div>
-            <h2>Manage Food</h2>
+            <PageTitle>SharePlus | Manage My Foods</PageTitle>
         </div>
     );
 };

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import LoginLottie from "../../Components/LoginLottie/LoginLottie";
 import useProvider from "../../Hooks/useProvider";
 import WithContainer from "../../Components/WidthContainer/WithContainer";
+import PageTitle from "../../Components/PageTitle";
 
 const SignUp = () => {
   const [errMsg, setErrMsg] = useState('')
@@ -51,6 +52,7 @@ const SignUp = () => {
 
     return (
       <div className="bg-secondary py-10">
+        <PageTitle>SharePlus | SignUp</PageTitle>
         <WithContainer>
           <div className="rounded-sm bg-center flex">
             <div className="flex-1 py-5 lg:px-20 ">

@@ -2,6 +2,8 @@ import { Link, useLoaderData } from "react-router-dom";
 import HomeSlider from "./HomeSlider";
 import HomefeaturedFood from "./HomefeaturedFood";
 import WithContainer from "../../Components/WidthContainer/WithContainer";
+import { Helmet } from "react-helmet";
+import PageTitle from "../../Components/PageTitle";
 
 
 const Home = () => {
@@ -9,6 +11,7 @@ const Home = () => {
     const featuredFoods = useLoaderData()
     return (
       <div>
+        <PageTitle>SharePlus | Feed the community</PageTitle>
         <HomeSlider></HomeSlider>
         {/* Featured Foods */}
        

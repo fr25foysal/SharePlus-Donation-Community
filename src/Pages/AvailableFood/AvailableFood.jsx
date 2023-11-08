@@ -2,6 +2,8 @@ import axios from "axios";
 import WithContainer from "../../Components/WidthContainer/WithContainer";
 import { useEffect, useState } from "react";
 import HomefeaturedFood from "../Home/HomefeaturedFood";
+import { Helmet } from "react-helmet";
+import PageTitle from "../../Components/PageTitle";
 
 const AvailableFood = () => {
     const [foods,setFoods] = useState([])
@@ -40,6 +42,7 @@ const AvailableFood = () => {
     
     return (
       <div className="">
+        <PageTitle>SharePlus | Available Foods</PageTitle>
         <div className="text-4xl bg-accent text-center p-10 font-semibold uppercase text-white">
           <h2>Available Foods</h2>
           <div className="divider w-[130px] m-2 bg-white h-1 rounded-sm mx-auto"></div>

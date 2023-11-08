@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import HomefeaturedFood from "../Home/HomefeaturedFood";
 import useProvider from "../../Hooks/useProvider";
+import PageTitle from "../../Components/PageTitle";
 
 const SingleFood = () => {
   const {user,successNotify,errorNotify} = useProvider()
@@ -61,6 +62,7 @@ const SingleFood = () => {
     }
   return (
     <div className="bg-secondary py-10">
+      <PageTitle>{FoodName}</PageTitle>
       <WithContainer>
         <div className="flex  gap-7">
           <div className="w-2/3 bg-white rounded-sm p-5 space-y-5">
