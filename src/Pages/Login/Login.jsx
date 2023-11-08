@@ -5,8 +5,11 @@ import LoginLottie from "../../Components/LoginLottie/LoginLottie";
 import useProvider from "../../Hooks/useProvider";
 import WithContainer from "../../Components/WidthContainer/WithContainer";
 import PageTitle from "../../Components/PageTitle";
+import { motion } from "framer-motion"
+
 
 const Login = () => {
+  
   const [errMsg, setErrMsg] = useState('')
   const navigate = useNavigate()
     const {userLogin,successNotify,googleLogin} = useProvider()
@@ -46,12 +49,19 @@ const Login = () => {
       <div className="bg-secondary ">
         <PageTitle>SharePlus | Login</PageTitle>
         <WithContainer>
-          <div className="rounded-sm bg-center flex">
-            <div className="flex-1 pb-5 lg:px-20">
+          <div className="rounded-sm bg-center flex md:flex-row flex-col">
+            <div className="flex-1 md:block md:pb-5 lg:px-20">
               <LoginLottie></LoginLottie>
             </div>
-            <div className="grid flex-1 justify-center pt-7">
-              <div className=" relative flex h-fit  w-96 flex-col rounded-sm dark:bg-dark-bg dark:text-white bg-white bg-clip-border text-gray-700">
+            <div className="grid flex-1 justify-center lg:py-7">
+              <motion.div initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 0.8,
+        delay: 0.5,
+        ease: [0, 0.71, 0.2, 1.01]
+      }}
+       className="relative flex h-fit  w-96 flex-col rounded-sm dark:bg-dark-bg dark:text-white bg-white bg-clip-border text-gray-700">
                 <div className="mt-8">
                   <h3 className="block text-accent text-3xl text-center font-semibold leading-snug tracking-normal antialiased">
                     Sign In
@@ -171,7 +181,7 @@ const Login = () => {
                     </p>
                   </div>
                 </form>
-              </div>
+              </motion.div>
               {/* <Toaster></Toaster> */}
             </div>
           </div>

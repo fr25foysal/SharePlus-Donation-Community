@@ -49,7 +49,7 @@ const AvailableFood = () => {
         </div>
         <div className="bg-secondary pt-5">
           <WithContainer>
-            <div className="py-7 rounded-sm flex px-5 bg-white mx-5 mb-5">
+            <div className="py-7 rounded-sm flex md:px-5 px-3 bg-white mx-5 mb-5">
               <form onSubmit={handleSearch} className="flex-1">
                 <label
                   htmlFor="default-search"
@@ -58,7 +58,7 @@ const AvailableFood = () => {
                   Search
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <div className="absolute hidden inset-y-0 left-0 md:flex items-center pl-3 pointer-events-none">
                     <svg
                       className="w-4 h-4 text-gray-500 dark:text-gray-400"
                       aria-hidden="true"
@@ -78,13 +78,13 @@ const AvailableFood = () => {
                     type="search"
                     name="search"
                     id="default-search"
-                    className="block w-full p-4 pl-10 text-sm text-gray-900 border border-accent focus:outline-none rounded-sm bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-accent dark:focus:border-accent"
+                    className="block w-full p-4 md:pl-10 pl-2 text-sm text-gray-900 border border-accent focus:outline-none rounded-sm bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-accent dark:focus:border-accent"
                     placeholder="Search..."
                     required
                   />
                   <button
                     type="submit"
-                    className="absolute right-2.5 bottom-2.5 bg-accent top-2 px-3 border-[3px] transition-all border-accent hover:bg-transparent hover:text-accent rounded-sm text-white"
+                    className="absolute right-2.5 bottom-2.5 bg-accent top-2 md:px-3 px-1 border-[3px] transition-all border-accent hover:bg-transparent hover:text-accent rounded-sm text-white"
                   >
                     Search
                   </button>

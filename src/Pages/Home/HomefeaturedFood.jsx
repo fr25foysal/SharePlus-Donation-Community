@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import { FaLocationDot } from 'react-icons/fa6';
+import { motion } from "framer-motion"
 
-const HomefeaturedFood = ({food}) => {
+
+const HomefeaturedFood = ({food,item}) => {
+  
   const {_id, FoodName, FoodImage, FoodQuantity, PickupLocation, ExpiredDate, AdditionalNotes, DonatorImage, DonatorName, DonatorEmail, FoodStatus} = food
 
     return (
       
-      <div  className=" rounded-sm text-neutral shadow- bg-white dark:bg-gray-900 dark:text-gray-100">
+      <motion.div variants={item} className=" rounded-sm text-neutral shadow- bg-white dark:bg-gray-900 dark:text-gray-100">
         <div className="flex items-center justify-between p-2">
           <div className="flex items-center space-x-2">
             <img
@@ -65,7 +68,7 @@ const HomefeaturedFood = ({food}) => {
             </p>
           </div>
         </div>
-      </div>
+      </motion.div>
     );
 };
 

@@ -34,12 +34,12 @@ const AddFood = () => {
           <h2>Donate Food</h2>
           <div className="divider w-[130px] m-2 bg-white h-1 rounded-sm mx-auto"></div>
         </div>
-        <div className="bg-secondary p-10">
+        <div className="bg-secondary md:p-10 p-5">
           <WithContainer>
             <div className="">
               <form
                 onSubmit={handleSubmit}
-                className="p-10 bg-white rounded-sm"
+                className="md:p-10 p-5 bg-white rounded-sm"
               >
                 <div className="grid md:grid-cols-2 md:gap-6">
                   <div className="relative z-0 w-full mb-6 group">

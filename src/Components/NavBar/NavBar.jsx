@@ -115,11 +115,11 @@ const NavBar = () => {
                 </svg>
               </label>
             </div>
-            <div className="flex-1">
+            <Link to={'/'} className="flex-1 lg:justify-normal justify-center">
               <img className="w-40" src="/logo.png" alt="" />
-            </div>
+            </Link>
             <div className="flex-none hidden lg:block">
-              <ul className="menu menu-horizontal px-0 items-center text-base font-medium text-black gap-x-5">
+              <ul className="menu menu-horizontal px-0 items-center text-base font-medium gap-x-5">
                 {/* Navbar menu content here */}
                {menus}
               </ul>
@@ -135,7 +135,7 @@ const NavBar = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu p-4 w-80 min-h-full bg-base-200">
+          <ul className="menu gap-y-3 p-4 w-[70%] h-full bg-[#000000af]">
             {/* Sidebar content here */}
            {menus}
           </ul>

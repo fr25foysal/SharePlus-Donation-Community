@@ -1,16 +1,16 @@
 import axios from "axios";
-import { useEffect } from "react";
 import { FaLocationDot } from "react-icons/fa6";
 
 const ReqCard = ({food}) => {
     
   const {_id,RequestDate,DonationMoney, FoodName, FoodImage, PickupLocation, ExpiredDate, DonatorImage, DonatorName, FoodStatus} = food
 
+
   const handleCancel =()=>{
     axios.delete(`/delete/${_id}`)
     .then(d=>console.log(d.data))
-    console.log(_id)
   }
+  
   return (
     <div className=" rounded-sm text-neutral shadow- bg-white dark:bg-gray-900 dark:text-gray-100">
       <div className="flex items-center justify-between p-2">
