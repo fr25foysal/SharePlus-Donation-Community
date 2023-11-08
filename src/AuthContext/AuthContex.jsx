@@ -2,6 +2,7 @@ import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged,
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../configs/firebase.config";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 export const authProvider = createContext()
 const AuthContex = ({children}) => {
@@ -16,6 +17,7 @@ const AuthContex = ({children}) => {
     // create user by email & pass
     const createUser = (email,password)=>{
         setLoading(true)
+       
         return createUserWithEmailAndPassword(auth,email,password)
     }
     
@@ -28,7 +30,7 @@ const AuthContex = ({children}) => {
     // Google Login
     const googleProvider = new GoogleAuthProvider()
     const googleLogin = ()=>{
-        setLoading(true)
+        setLoading(true)               
         return signInWithPopup(auth,googleProvider)
     }
 
@@ -45,12 +47,32 @@ const AuthContex = ({children}) => {
     }
 
     // keep the user alive on website😂
+
+     // const keepAlive = onAuthStateChanged(auth,(currentUser)=>{
+        //     setUser(currentUser)
+        //     console.log("current",currentUser)
+        //     setLoading(false)
+        //     if (currentUser) {
+        //         axios.post('/jwt',{email: currentUser?.email},{withCredentials: true})
+        //         .then(d=>console.log(d.data))
+        //     }            
+        // })
+        // return ()=> keepAlive
     useEffect(()=>{
-        const keepAlive = onAuthStateChanged(auth,(currentUser)=>{
-            setUser(currentUser)
+        onAuthStateChanged(auth, currentuser=>{
+            setUser(currentuser)
+            const email = currentuser?.email || user?.email
+            const userEmail = {email}
             setLoading(false)
+
+            if (currentuser){
+                axios.post('http://localhost:5002/jwt',userEmail, {withCredentials: true})
+                .then(res=> console.log(res.data))
+            }else{
+                axios.post('http://localhost:5002/logout',userEmail,{withCredentials: true})
+                .then(res=>console.log(res.data))
+            }
         })
-        return ()=> keepAlive
     },[])
 
     // sending values ✈

@@ -20,7 +20,7 @@ const myRoutes = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: ()=> fetch('http://localhost:5000/featured-foods')
+                loader: ()=> fetch('https://shareplus-backend.vercel.app/featured-foods')
             },
             {
                 path : 'available-food',
@@ -41,7 +41,7 @@ const myRoutes = createBrowserRouter([
             {
                 path: 'food/:id',
                 element:<PrivateRoute><SingleFood></SingleFood></PrivateRoute> ,
-                loader: ({params})=> fetch(`http://localhost:5000/food/${params.id}`)
+                loader: ({params})=> fetch(`https://shareplus-backend.vercel.app/${params.id}`)
             },
             {
                 path: 'login',
