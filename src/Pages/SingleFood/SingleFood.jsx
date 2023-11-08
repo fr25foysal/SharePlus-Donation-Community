@@ -61,11 +61,11 @@ const SingleFood = () => {
       })
     }
   return (
-    <div className="bg-secondary py-10">
+    <div className="md:bg-secondary  md:py-5 lg:px-0 md:px-10">
       <PageTitle>{FoodName}</PageTitle>
       <WithContainer>
-        <div className="flex  gap-7">
-          <div className="w-2/3 bg-white rounded-sm p-5 space-y-5">
+        <div className="flex bg-white pt-5 gap-7 lg:flex-row flex-col">
+          <div className="lg:w-2/3 bg-white rounded-sm md:p-5 space-y-5">
             {/* Donator Information  */}
             <div className="bg-secondary p-5">
               <div className="flex space-x-4">
@@ -89,13 +89,13 @@ const SingleFood = () => {
 
             {/* Food Section  */}
             <div className="bg-secondary p-5">
-              <div className="flex space-x-4">
+              <div className="flex md:flex-row flex-col space-x-4">
                 <img
-                  className="object-cover w-1/2 object-top"
+                  className="object-cover md:w-1/2 object-top"
                   src={FoodImage}
                   alt=""
                 />
-                <div className="w-1/2 pl-5 flex items-center">
+                <div className="md:w-1/2 md:pl-5 md:pt-0 pt-5 flex items-center">
                   <div>
                     <h2 className="text-2xl font-semibold text-neutral">
                       Food: {FoodName}
@@ -201,8 +201,8 @@ const SingleFood = () => {
             </div>
           </div>
 
-          <div className="flex-1 hidden lg:block rounded-sm p-5 bg-white">
-            <div className="bg-secondary p-5">
+          <div className="flex-1 lg:block rounded-sm md:p-5 bg-white">
+            <div className="bg-secondary md:p-5 px-2">
               <h2 className="text-2xl mb-5 font-semibold text-center">
                 More Foods
               </h2>

@@ -51,15 +51,15 @@ const SignUp = () => {
     }
 
     return (
-      <div className="bg-secondary py-10">
+      <div className="bg-secondary lg:py-10">
         <PageTitle>SharePlus | SignUp</PageTitle>
         <WithContainer>
-          <div className="rounded-sm bg-center flex">
-            <div className="flex-1 py-5 lg:px-20 ">
+          <div className="rounded-sm bg-center flex md:flex-row flex-col">
+            <div className="flex-1 items-center flex py-5 lg:px-20 ">
               <LoginLottie></LoginLottie>
             </div>
             <div className="grid flex-1 justify-center dark:text-white rounded-sm">
-              <div className="relative flex flex-col dark:bg-dark-bg bg-white shadow-md px-6 py-10">
+              <div className="relative flex flex-col dark:bg-dark-bg bg-white shadow-md md:px-6 py-10">
                 <div className="flex">
                   <button
                     onClick={handleGoogleLogin}

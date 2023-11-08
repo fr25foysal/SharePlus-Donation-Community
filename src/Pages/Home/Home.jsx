@@ -44,7 +44,7 @@ const Home = () => {
            variants={container}
             initial="hidden" 
             animate="visible"
-            className=" grid grid-cols-8 justify-evenl p-5">
+            className=" grid lg:grid-cols-8 md:grid-cols-4 gap-6 grid-cols-2 justify-evenl p-5">
             
             {
                 featuredFoods.map(food=><motion.div className="mx-auto" variants={item} key={food._id}>
