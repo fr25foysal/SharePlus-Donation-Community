@@ -8,7 +8,7 @@ import notFound from '../../assets/anims/not-found.json'
 import PageTitle from "../../Components/PageTitle";
 
 const FoodRequest = () => {
-    const {user} = useProvider()
+    const {user,successNotify} = useProvider()
     const [foods,setFoods] = useState([])
     useEffect(()=>{
         axios.get(`/requested-foods?email=${user.email}`)
@@ -17,6 +17,17 @@ const FoodRequest = () => {
         } )
         
     },[user.email])
+
+    const handleCancel =(id)=>{
+      axios.delete(`/delete/${id}`)
+      .then((d)=>{
+        if (d.data.deletedCount>0) {
+        successNotify('Request has been cancelled')
+        const newFoods=() => foods.filter(f=>f._id !==id) 
+        setFoods(newFoods)
+        }
+      })
+    }
     return (
       <div className="">
         <PageTitle>SharePlus | My Food Requests</PageTitle>
@@ -33,7 +44,7 @@ const FoodRequest = () => {
             ) : (
               <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-4 px-5 pb-10">
                 {foods.map((food) => (
-                  <ReqCard key={food._id} food={food}></ReqCard>
+                  <ReqCard key={food._id} handleCancel={handleCancel} food={food}></ReqCard>
                 ))}
               </div>
             )}

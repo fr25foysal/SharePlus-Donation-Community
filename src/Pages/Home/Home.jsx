@@ -94,7 +94,7 @@ const Home = () => {
         {/* HElp Section  */}
         <div className="pt-14 pb-10 ">
           <WithContainer>
-            <div className="flex lg:flex-row md:p-10 lg:p-0 flex-col rounded-sm">
+            <div className="flex lg:flex-row md:px-10 lg:p-0 flex-col rounded-sm">
               <div className="flex-1">
                   <img src={feedOthers} className="rounded-sm" alt="HelpIng image" />
               </div>
