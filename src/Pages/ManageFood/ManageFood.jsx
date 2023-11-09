@@ -70,7 +70,7 @@ const ManageFood = () => {
             Header: 'Manage',
             accessorKey:  "manage",
             cell: ({ row }) => (
-              <Link to={`/manage/${row.original._id}/${user.email}`} className='bg-black p-4'>Manage</Link>
+              <Link to={`/manage/${row.original._id}`} className='bg-black p-4'>Manage</Link>
             ),
           },
           {

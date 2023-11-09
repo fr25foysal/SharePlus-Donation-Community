@@ -43,9 +43,9 @@ const myRoutes = createBrowserRouter([
                 loader: ({params})=>fetch(`https://shareplus-backend.vercel.app/food/${params.id}`)
             },
             {
-                path: 'manage/:id/:email',
+                path: 'manage/:id',
                 element:<PrivateRoute><ManageSingle></ManageSingle></PrivateRoute> ,
-                loader: (data)=> console.log(data)
+                // loader: ({params})=> console.log(params.id)
             },
             {
                 path : 'food-reqs',

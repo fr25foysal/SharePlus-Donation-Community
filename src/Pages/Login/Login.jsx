@@ -6,6 +6,7 @@ import useProvider from "../../Hooks/useProvider";
 import WithContainer from "../../Components/WidthContainer/WithContainer";
 import PageTitle from "../../Components/PageTitle";
 import { motion } from "framer-motion"
+import axios from "axios";
 
 
 const Login = () => {
@@ -20,7 +21,9 @@ const Login = () => {
 
     const handleGoogleLogin=()=>{
       googleLogin()
-      .then(()=>{
+      .then((e)=>{
+        axios.post('/jwt',{email: e.user.email}, {withCredentials: true})
+                .then(res=> console.log(res.data))
         successNotify("Sign Up Succesful")
           navigate('/')
       })
@@ -36,7 +39,10 @@ const Login = () => {
       const password = form.password.value
 
       userLogin(email,password)
-      .then(()=>{
+      .then((e)=>{
+                axios.post('/jwt',{email: e.user.email}, {withCredentials: true})
+                .then(res=> console.log(res.data))
+                
         successNotify('User Logged In')
         navigate('/')
       })
