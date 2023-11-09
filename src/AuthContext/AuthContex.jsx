@@ -43,8 +43,6 @@ const AuthContex = ({children}) => {
 
     // Log out user 
     const logOut =()=>{
-         //     axios.post('http://localhost:5002/logout',userEmail,{withCredentials: true})
-        //     .then(res=>console.log(res.data)
         return signOut(auth)
     }
 

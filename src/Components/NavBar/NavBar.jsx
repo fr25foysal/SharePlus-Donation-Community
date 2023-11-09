@@ -1,5 +1,6 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useProvider from "../../Hooks/useProvider";
+import axios from "axios";
 
 const NavBar = () => {
   
@@ -7,6 +8,8 @@ const NavBar = () => {
     const handleLogout=()=>{
       logOut()
       .then(()=>{
+        axios.delete('/logout',{withCredentials: true})
+            .then(res=>console.log(res.data))
         successNotify('User Logged Out')
       })
       .catch(e=>console.error(e.message))

@@ -23,7 +23,7 @@ const Login = () => {
       googleLogin()
       .then((e)=>{
         axios.post('/jwt',{email: e.user.email}, {withCredentials: true})
-                .then(res=> console.log(res.data))
+        .then(res=> console.log(res.data))
         successNotify("Sign Up Succesful")
           navigate('/')
       })
