@@ -2,7 +2,6 @@ import axios from "axios";
 import WithContainer from "../../Components/WidthContainer/WithContainer";
 import { useEffect, useState } from "react";
 import HomefeaturedFood from "../Home/HomefeaturedFood";
-import { Helmet } from "react-helmet";
 import PageTitle from "../../Components/PageTitle";
 
 const AvailableFood = () => {

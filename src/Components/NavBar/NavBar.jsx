@@ -6,10 +6,8 @@ const NavBar = () => {
     const {user,logOut,successNotify} = useProvider()
     const handleLogout=()=>{
       logOut()
-      .then(d=>{
-        console.log(d);
+      .then(()=>{
         successNotify('User Logged Out')
-        
       })
       .catch(e=>console.error(e.message))
     }

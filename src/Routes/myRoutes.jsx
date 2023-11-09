@@ -10,6 +10,9 @@ import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import SingleFood from "../Pages/SingleFood/SingleFood";
 import PrivateRoute from "./PrivateRoute";
+import axios from "axios";
+import UpdateFood from "../Pages/ManageFood/UpdateFood/UpdateFood";
+import ManageSingle from "../Pages/ManageFood/ManageSingle/ManageSingle";
 
 const myRoutes = createBrowserRouter([
     {
@@ -32,7 +35,17 @@ const myRoutes = createBrowserRouter([
             },
             {
                 path : 'manage-food',
-                element:<PrivateRoute><ManageFood></ManageFood></PrivateRoute> 
+                element:<PrivateRoute><ManageFood></ManageFood></PrivateRoute>               
+            },
+            {
+                path: 'update-food/:id',
+                element:<PrivateRoute><UpdateFood></UpdateFood></PrivateRoute> ,
+                loader: ({params})=>fetch(`https://shareplus-backend.vercel.app/food/${params.id}`)
+            },
+            {
+                path: 'manage/:id/:email',
+                element:<PrivateRoute><ManageSingle></ManageSingle></PrivateRoute> ,
+                loader: (data)=> console.log(data)
             },
             {
                 path : 'food-reqs',
@@ -41,7 +54,7 @@ const myRoutes = createBrowserRouter([
             {
                 path: 'food/:id',
                 element:<PrivateRoute><SingleFood></SingleFood></PrivateRoute> ,
-                loader: ({params})=> fetch(`https://shareplus-backend.vercel.app/${params.id}`)
+                loader: ({params})=> fetch(`https://shareplus-backend.vercel.app/food/${params.id}`)
             },
             {
                 path: 'login',

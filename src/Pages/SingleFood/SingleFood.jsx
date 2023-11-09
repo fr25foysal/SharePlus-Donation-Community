@@ -33,7 +33,7 @@ const SingleFood = () => {
     DonatorEmail,
     FoodStatus,
   } = food;
-
+  
   const [foods,setFoods] = useState([])
   useEffect(()=>{
     axios.get(`/featured-foods-sidebar`)
@@ -50,8 +50,8 @@ const SingleFood = () => {
       const requestData = {FoodName,FoodImage,DonatorEmail,DonatorName,DonatorImage,FoodStatus,UserEmail,ExpiredDate,PickupLocation,RequestDate,AditionalNote,DonationMoney}
       
       axios.post('/req-food',requestData)
-      .then(d=>{
-        console.log(d);
+      .then(()=>{
+        
         successNotify('Request Successful')
         e.target.reset()
       })

@@ -1,71 +1,54 @@
 
 import { useReactTable,getCoreRowModel,flexRender } from '@tanstack/react-table'
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import PageTitle from '../../Components/PageTitle';
 import WithContainer from '../../Components/WidthContainer/WithContainer';
-
-
+import axios from 'axios';
+import useProvider from '../../Hooks/useProvider';
+import { Link } from 'react-router-dom';
   
 const ManageFood = () => {
+  
+  const {user,successNotify,errorNotify} = useProvider()
+    const [foodData,setFoodData] = useState([])
    
-    const foodData = [
-        {
-            id: 1,
-          FoodName: "Rice and Lentils",
-          FoodImage: "https://i.ibb.co/DgvcHYY/food-3.jpg",
-          FoodQuantity: "15",
-          PickupLocation: "789 Oak Road, Villageton",
-          ExpiredDate: "2023-12-10",
-          AdditionalNotes: "Basmati rice and red lentils",
-          DonatorImage: "https://i.ibb.co/kXNqTBH/donor-4.jpg",
-          DonatorName: "Sarah Brown",
-          DonatorEmail: "sarah@example.com",
-          FoodStatus: "available"
-        },
-        {
-            id: 2,
-          FoodName: "Rice and Lentils",
-          FoodImage: "https://i.ibb.co/DgvcHYY/food-3.jpg",
-          FoodQuantity: "15",
-          PickupLocation: "789 Oak Road, Villageton",
-          ExpiredDate: "2023-12-10",
-          AdditionalNotes: "Basmati rice and red lentils",
-          DonatorImage: "https://i.ibb.co/kXNqTBH/donor-4.jpg",
-          DonatorName: "Sarah Brown",
-          DonatorEmail: "sarah@example.com",
-          FoodStatus: "available"
-        },
-        {
-            id: 3,
-          FoodName: "Rice and Lentils",
-          FoodImage: "https://i.ibb.co/DgvcHYY/food-3.jpg",
-          FoodQuantity: "15",
-          PickupLocation: "789 Oak Road, Villageton",
-          ExpiredDate: "2023-12-10",
-          AdditionalNotes: "Basmati rice and red lentils",
-          DonatorImage: "https://i.ibb.co/kXNqTBH/donor-4.jpg",
-          DonatorName: "Sarah Brown",
-          DonatorEmail: "sarah@example.com",
-          FoodStatus: "available"
-        },
-        
-      ];
+    useEffect(()=>{
+      axios.get(`/manage-foods?email=${user.email}`)
+    .then(d=>setFoodData(d.data))
 
+    },[])
       const data = useMemo(
             ()=>foodData,
-            []
+            [foodData]
         )
-        
 
+        const handleManageClick = (rowData) => {
+          console.log('Manage button clicked for row:', rowData);
+        };  
+        const handleDeleteClick = (rowData) => {
+          axios.delete(`http://localhost:5000/manage/delete/${rowData}`)
+          .then(()=>{
+            successNotify('Food Deleted')
+            const newFoods=() => foodData.filter(f=>f._id !==rowData) 
+            setFoodData(newFoods)
+        })
+          .catch(e=>{
+              console.error(e.message);
+              errorNotify('Something went wrong!')
+          })
+        }
     const columns = [
         {
             Header: 'Name',
             accessorKey: 'FoodName',
           },
-          {
-            Header: 'Image',
-            accessorKey: 'FoodImage',
-          },
+          // {
+          //   Header: 'Image',
+          //   accessorKey: 'FoodImage',
+          //   cell: ({ row }) => (
+          //    <img src="../../assets/images/feedothers.jpg" alt="" />
+          //   ),
+          // },
           {
             Header: 'Quantity',
             accessorKey: 'FoodQuantity',
@@ -77,6 +60,7 @@ const ManageFood = () => {
           {
             Header: 'Expires',
             accessorKey: 'ExpiredDate',
+            
           },
           {
             Header: 'Status',
@@ -84,16 +68,25 @@ const ManageFood = () => {
           },
           {
             Header: 'Manage',
-            accessorKey: 'Manage',
-            renderValue: () => <h1>hi</h1>
+            accessorKey:  "manage",
+            cell: ({ row }) => (
+              <Link to={`/manage/${row.original._id}/${user.email}`} className='bg-black p-4'>Manage</Link>
+            ),
           },
           {
             Header: 'Edit',
             accessorKey: 'Edit',
+            cell: ({row})=>(
+              <Link to={`/update-food/${row.original._id}`} className='bg-black p-4'>Edit</Link>
+            )
+            
           },
           {
             Header: 'Delete',
             accessorKey: 'Delete',
+            cell: ({row})=>(
+              <button onClick={()=>handleDeleteClick(row.original._id)} className='bg-black p-4'>Delete</button>
+            )
           },
     ]
      
@@ -106,11 +99,11 @@ const ManageFood = () => {
 
             <WithContainer>
                 <div className='bg-secondary p-5 text-center'>
-               <table>
+               <table className='mx-auto'>
             <thead>
                 {
                     table.getHeaderGroups().map(headerGroup => (
-                        <tr key={headerGroup.id}>
+                        <tr key={headerGroup.id} className='bg-white'>
                             {headerGroup.headers.map(header => <th key={header.id}>
                                 {
                                     flexRender(
@@ -125,17 +118,19 @@ const ManageFood = () => {
             <tbody>
                 {
                     table.getRowModel().rows.map( row =>(
-                        <tr key={row.id}>
+                        <tr className='bg-neutral' key={row.id}>
                             {
                                 row.getVisibleCells().map(cell =>(
                                     <td key={cell.id}>
                                         {
                                             flexRender(cell.column.columnDef.cell,cell.getContext())
                                         }
+                                        
                                     </td>
                                 ))
                             }
                         </tr>
+                        
                     ))
                 }
             </tbody>

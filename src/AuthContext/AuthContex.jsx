@@ -62,16 +62,16 @@ const AuthContex = ({children}) => {
         onAuthStateChanged(auth, currentuser=>{
             setUser(currentuser)
             const email = currentuser?.email || user?.email
-            const userEmail = {email}
+            // const userEmail = {email}
             setLoading(false)
 
-            if (currentuser){
-                axios.post('http://localhost:5002/jwt',userEmail, {withCredentials: true})
-                .then(res=> console.log(res.data))
-            }else{
-                axios.post('http://localhost:5002/logout',userEmail,{withCredentials: true})
-                .then(res=>console.log(res.data))
-            }
+            // if (currentuser){
+            //     axios.post('http://localhost:5002/jwt',userEmail, {withCredentials: true})
+            //     .then(res=> console.log(res.data))
+            // }else{
+            //     axios.post('http://localhost:5002/logout',userEmail,{withCredentials: true})
+            //     .then(res=>console.log(res.data))
+            // }
         })
     },[])
 
